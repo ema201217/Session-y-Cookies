@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cerulean/bootstrap.min.css"
+    integrity="sha384-3fdgwJw17Bi87e1QQ4fsLn4rUFqWw//KU0g8TvV6quvahISRewev6/EocKNuJmEw" crossorigin="anonymous">
+</head>
+
+<body style=<%-locals.info ? `background-color:${info.colores}` : locals.rememberColor ?
+  `background-color:${rememberColor}` : null%>>
+  <main class="container">
+    <form action="/" class="row" method="post">
+
+      <label for="nombre" class="form-label col-4">Ingrese su nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control col-4">
+      <% if (locals.errores && errores.nombre) { %>
+        <small class="text-danger">
+          <%= errores.nombre.msg %>
+        </small>
+        <% } %>
+          <select name="colores" class="form-control col-4">
+            <option value="" selected disabled>colores</option>
+            <option value="blue">azul</option>
+            <option value="yellow">amarillo</option>
+            <option value="green">verde</option>
+            <option value="red">rojo</option>
+            <option value="gray">gris</option>
+          </select>
+          <% if (locals.errores && errores.colores) { %>
+            <small class="text-danger">
+              <%= errores.colores.msg %>
+            </small>
+            <% } %>
+              <label for="email" class="form-label col-4">Ingrese su email</label><input class="form-control col-4"
+                type="text" name="email" id="email">
+              <% if (locals.errores && errores.email) { %>
+                <small class="text-danger">
+                  <%= errores.email.msg %>
+                </small>
+                <% } %>
+                  <label for="Edad" class="form-label col-4">Ingrese su edad</label><input class="form-control col-4"
+                    min="1" max="100" type="number" name="edad" id="Edad">
+                  <% if (locals.errores && errores.edad) { %>
+                    <small class="text-danger">
+                      <%= errores.edad.msg %>
+                    </small>
+                    <% } %>
+
+
+                      <div class="d-flex justify-content-center align-items-center col-4">
+                        <input class="form-control-md mr-2" type="checkbox" name="colorRemember" value="on"
+                          id="remember">
+                        <label class="form-label" for="remember">Recordar color</label>
+                      </div>
+
+                      <button type="submit" class="btn btn-primary col-4">Enviar</button>
+    </form>
+    <form action="/delcolor" method="post" class="row mt-3">
+      <button type="submit" class="btn btn-danger col-4">Olvidar color</button>
+    </form>
+
+  
+
+  </main>
+</body>
+
+</html>
